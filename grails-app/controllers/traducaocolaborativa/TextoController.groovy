@@ -14,10 +14,15 @@ class TextoController extends RestfulController {
     }
 
     def index(){
-        def lista = Texto.createCriteria().list {
-            between("lastUpdated",new SimpleDateFormat("dd-MM-yyyyH:mm").parse(params.ultimaSincronizacao),new Date())
-        };
-        render  lista as JSON;
+        if(params!= null && params.ultimaSincronizacao != null){
+            def lista = Texto.createCriteria().list {
+                between("lastUpdated",new SimpleDateFormat("dd-MM-yyyyH:mm").parse(params.ultimaSincronizacao),new Date())
+            };
+            render  lista as JSON;
+        }else{
+            def lista = Texto.list()
+            render lista as JSON;
+        }
     }
 
 }
