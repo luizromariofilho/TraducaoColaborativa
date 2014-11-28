@@ -7,6 +7,10 @@ class Texto {
     String emailAutor
     String emailTradutor
 
+    Date lastUpdated;
+    Date dateCreated;
+
+
     static constraints = {
         textoTraduzido nullable: true
         textoOriginal size: (3..144)
@@ -14,5 +18,9 @@ class Texto {
         emailTradutor nullable: true
         emailTradutor email: true
         emailAutor email: true
+    }
+
+    static mapping = {
+        autoTimestamp(true)
     }
 }
