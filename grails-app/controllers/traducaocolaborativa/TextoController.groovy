@@ -16,7 +16,7 @@ class TextoController extends RestfulController {
     def index(){
         if(params!= null && params.ultimaSincronizacao != null){
             def lista = Texto.createCriteria().list {
-                between("lastUpdated",new SimpleDateFormat("dd-MM-yyyyH:mm").parse(params.ultimaSincronizacao),new Date())
+                between("lastUpdated",new SimpleDateFormat("dd-MM-yyyyH:mm:ss").parse(params.ultimaSincronizacao),new Date())
             };
             render  lista as JSON;
         }else{
